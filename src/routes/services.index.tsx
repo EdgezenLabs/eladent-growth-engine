@@ -7,7 +7,7 @@ import {
   AlertTriangle, Briefcase, ArrowRight, CheckCircle2,
 } from "lucide-react";
 
-export const Route = createFileRoute("/services")({
+export const Route = createFileRoute("/services/")({
   head: () => ({
     meta: [
       { title: "Dental Billing & RCM Services | Eladent Consulting" },

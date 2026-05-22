@@ -10,7 +10,6 @@
 
 import { Route as rootRouteImport } from './routes/__root'
 import { Route as SitemapDotxmlRouteImport } from './routes/sitemap[.]xml'
-import { Route as ServicesRouteImport } from './routes/services'
 import { Route as PrivacyPolicyRouteImport } from './routes/privacy-policy'
 import { Route as HipaaComplianceRouteImport } from './routes/hipaa-compliance'
 import { Route as ContactRouteImport } from './routes/contact'
@@ -18,6 +17,7 @@ import { Route as CareersRouteImport } from './routes/careers'
 import { Route as BlogRouteImport } from './routes/blog'
 import { Route as AboutRouteImport } from './routes/about'
 import { Route as IndexRouteImport } from './routes/index'
+import { Route as ServicesIndexRouteImport } from './routes/services.index'
 import { Route as ServicesInsuranceVerificationRouteImport } from './routes/services.insurance-verification'
 import { Route as ServicesDentalBillingRouteImport } from './routes/services.dental-billing'
 import { Route as ServicesCredentialingRouteImport } from './routes/services.credentialing'
@@ -26,11 +26,6 @@ import { Route as ServicesAccountsReceivableRouteImport } from './routes/service
 const SitemapDotxmlRoute = SitemapDotxmlRouteImport.update({
   id: '/sitemap.xml',
   path: '/sitemap.xml',
-  getParentRoute: () => rootRouteImport,
-} as any)
-const ServicesRoute = ServicesRouteImport.update({
-  id: '/services',
-  path: '/services',
   getParentRoute: () => rootRouteImport,
 } as any)
 const PrivacyPolicyRoute = PrivacyPolicyRouteImport.update({
@@ -68,6 +63,11 @@ const IndexRoute = IndexRouteImport.update({
   path: '/',
   getParentRoute: () => rootRouteImport,
 } as any)
+const ServicesIndexRoute = ServicesIndexRouteImport.update({
+  id: '/services/',
+  path: '/services/',
+  getParentRoute: () => rootRouteImport,
+} as any)
 const ServicesInsuranceVerificationRoute =
   ServicesInsuranceVerificationRouteImport.update({
     id: '/insurance-verification',
@@ -99,12 +99,12 @@ export interface FileRoutesByFullPath {
   '/contact': typeof ContactRoute
   '/hipaa-compliance': typeof HipaaComplianceRoute
   '/privacy-policy': typeof PrivacyPolicyRoute
-  '/services': typeof ServicesRouteWithChildren
   '/sitemap.xml': typeof SitemapDotxmlRoute
   '/services/accounts-receivable': typeof ServicesAccountsReceivableRoute
   '/services/credentialing': typeof ServicesCredentialingRoute
   '/services/dental-billing': typeof ServicesDentalBillingRoute
   '/services/insurance-verification': typeof ServicesInsuranceVerificationRoute
+  '/services/': typeof ServicesIndexRoute
 }
 export interface FileRoutesByTo {
   '/': typeof IndexRoute
@@ -114,12 +114,12 @@ export interface FileRoutesByTo {
   '/contact': typeof ContactRoute
   '/hipaa-compliance': typeof HipaaComplianceRoute
   '/privacy-policy': typeof PrivacyPolicyRoute
-  '/services': typeof ServicesRouteWithChildren
   '/sitemap.xml': typeof SitemapDotxmlRoute
   '/services/accounts-receivable': typeof ServicesAccountsReceivableRoute
   '/services/credentialing': typeof ServicesCredentialingRoute
   '/services/dental-billing': typeof ServicesDentalBillingRoute
   '/services/insurance-verification': typeof ServicesInsuranceVerificationRoute
+  '/services': typeof ServicesIndexRoute
 }
 export interface FileRoutesById {
   __root__: typeof rootRouteImport
@@ -130,12 +130,12 @@ export interface FileRoutesById {
   '/contact': typeof ContactRoute
   '/hipaa-compliance': typeof HipaaComplianceRoute
   '/privacy-policy': typeof PrivacyPolicyRoute
-  '/services': typeof ServicesRouteWithChildren
   '/sitemap.xml': typeof SitemapDotxmlRoute
   '/services/accounts-receivable': typeof ServicesAccountsReceivableRoute
   '/services/credentialing': typeof ServicesCredentialingRoute
   '/services/dental-billing': typeof ServicesDentalBillingRoute
   '/services/insurance-verification': typeof ServicesInsuranceVerificationRoute
+  '/services/': typeof ServicesIndexRoute
 }
 export interface FileRouteTypes {
   fileRoutesByFullPath: FileRoutesByFullPath
@@ -147,12 +147,12 @@ export interface FileRouteTypes {
     | '/contact'
     | '/hipaa-compliance'
     | '/privacy-policy'
-    | '/services'
     | '/sitemap.xml'
     | '/services/accounts-receivable'
     | '/services/credentialing'
     | '/services/dental-billing'
     | '/services/insurance-verification'
+    | '/services/'
   fileRoutesByTo: FileRoutesByTo
   to:
     | '/'
@@ -162,12 +162,12 @@ export interface FileRouteTypes {
     | '/contact'
     | '/hipaa-compliance'
     | '/privacy-policy'
-    | '/services'
     | '/sitemap.xml'
     | '/services/accounts-receivable'
     | '/services/credentialing'
     | '/services/dental-billing'
     | '/services/insurance-verification'
+    | '/services'
   id:
     | '__root__'
     | '/'
@@ -177,12 +177,12 @@ export interface FileRouteTypes {
     | '/contact'
     | '/hipaa-compliance'
     | '/privacy-policy'
-    | '/services'
     | '/sitemap.xml'
     | '/services/accounts-receivable'
     | '/services/credentialing'
     | '/services/dental-billing'
     | '/services/insurance-verification'
+    | '/services/'
   fileRoutesById: FileRoutesById
 }
 export interface RootRouteChildren {
@@ -193,8 +193,8 @@ export interface RootRouteChildren {
   ContactRoute: typeof ContactRoute
   HipaaComplianceRoute: typeof HipaaComplianceRoute
   PrivacyPolicyRoute: typeof PrivacyPolicyRoute
-  ServicesRoute: typeof ServicesRouteWithChildren
   SitemapDotxmlRoute: typeof SitemapDotxmlRoute
+  ServicesIndexRoute: typeof ServicesIndexRoute
 }
 
 declare module '@tanstack/react-router' {
@@ -204,13 +204,6 @@ declare module '@tanstack/react-router' {
       path: '/sitemap.xml'
       fullPath: '/sitemap.xml'
       preLoaderRoute: typeof SitemapDotxmlRouteImport
-      parentRoute: typeof rootRouteImport
-    }
-    '/services': {
-      id: '/services'
-      path: '/services'
-      fullPath: '/services'
-      preLoaderRoute: typeof ServicesRouteImport
       parentRoute: typeof rootRouteImport
     }
     '/privacy-policy': {
@@ -262,6 +255,13 @@ declare module '@tanstack/react-router' {
       preLoaderRoute: typeof IndexRouteImport
       parentRoute: typeof rootRouteImport
     }
+    '/services/': {
+      id: '/services/'
+      path: '/services'
+      fullPath: '/services/'
+      preLoaderRoute: typeof ServicesIndexRouteImport
+      parentRoute: typeof rootRouteImport
+    }
     '/services/insurance-verification': {
       id: '/services/insurance-verification'
       path: '/insurance-verification'
@@ -293,24 +293,6 @@ declare module '@tanstack/react-router' {
   }
 }
 
-interface ServicesRouteChildren {
-  ServicesAccountsReceivableRoute: typeof ServicesAccountsReceivableRoute
-  ServicesCredentialingRoute: typeof ServicesCredentialingRoute
-  ServicesDentalBillingRoute: typeof ServicesDentalBillingRoute
-  ServicesInsuranceVerificationRoute: typeof ServicesInsuranceVerificationRoute
-}
-
-const ServicesRouteChildren: ServicesRouteChildren = {
-  ServicesAccountsReceivableRoute: ServicesAccountsReceivableRoute,
-  ServicesCredentialingRoute: ServicesCredentialingRoute,
-  ServicesDentalBillingRoute: ServicesDentalBillingRoute,
-  ServicesInsuranceVerificationRoute: ServicesInsuranceVerificationRoute,
-}
-
-const ServicesRouteWithChildren = ServicesRoute._addFileChildren(
-  ServicesRouteChildren,
-)
-
 const rootRouteChildren: RootRouteChildren = {
   IndexRoute: IndexRoute,
   AboutRoute: AboutRoute,
@@ -319,9 +301,19 @@ const rootRouteChildren: RootRouteChildren = {
   ContactRoute: ContactRoute,
   HipaaComplianceRoute: HipaaComplianceRoute,
   PrivacyPolicyRoute: PrivacyPolicyRoute,
-  ServicesRoute: ServicesRouteWithChildren,
   SitemapDotxmlRoute: SitemapDotxmlRoute,
+  ServicesIndexRoute: ServicesIndexRoute,
 }
 export const routeTree = rootRouteImport
   ._addFileChildren(rootRouteChildren)
   ._addFileTypes<FileRouteTypes>()
+
+import type { getRouter } from './router.tsx'
+import type { startInstance } from './start.ts'
+declare module '@tanstack/react-start' {
+  interface Register {
+    ssr: true
+    router: Awaited<ReturnType<typeof getRouter>>
+    config: Awaited<ReturnType<typeof startInstance.getOptions>>
+  }
+}
