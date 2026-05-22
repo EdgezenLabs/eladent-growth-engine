@@ -12,6 +12,10 @@ import { Route as rootRouteImport } from './routes/__root'
 import { Route as ServicesRouteImport } from './routes/services'
 import { Route as AboutRouteImport } from './routes/about'
 import { Route as IndexRouteImport } from './routes/index'
+import { Route as ServicesInsuranceVerificationRouteImport } from './routes/services.insurance-verification'
+import { Route as ServicesDentalBillingRouteImport } from './routes/services.dental-billing'
+import { Route as ServicesCredentialingRouteImport } from './routes/services.credentialing'
+import { Route as ServicesAccountsReceivableRouteImport } from './routes/services.accounts-receivable'
 
 const ServicesRoute = ServicesRouteImport.update({
   id: '/services',
@@ -28,35 +32,91 @@ const IndexRoute = IndexRouteImport.update({
   path: '/',
   getParentRoute: () => rootRouteImport,
 } as any)
+const ServicesInsuranceVerificationRoute =
+  ServicesInsuranceVerificationRouteImport.update({
+    id: '/insurance-verification',
+    path: '/insurance-verification',
+    getParentRoute: () => ServicesRoute,
+  } as any)
+const ServicesDentalBillingRoute = ServicesDentalBillingRouteImport.update({
+  id: '/dental-billing',
+  path: '/dental-billing',
+  getParentRoute: () => ServicesRoute,
+} as any)
+const ServicesCredentialingRoute = ServicesCredentialingRouteImport.update({
+  id: '/credentialing',
+  path: '/credentialing',
+  getParentRoute: () => ServicesRoute,
+} as any)
+const ServicesAccountsReceivableRoute =
+  ServicesAccountsReceivableRouteImport.update({
+    id: '/accounts-receivable',
+    path: '/accounts-receivable',
+    getParentRoute: () => ServicesRoute,
+  } as any)
 
 export interface FileRoutesByFullPath {
   '/': typeof IndexRoute
   '/about': typeof AboutRoute
-  '/services': typeof ServicesRoute
+  '/services': typeof ServicesRouteWithChildren
+  '/services/accounts-receivable': typeof ServicesAccountsReceivableRoute
+  '/services/credentialing': typeof ServicesCredentialingRoute
+  '/services/dental-billing': typeof ServicesDentalBillingRoute
+  '/services/insurance-verification': typeof ServicesInsuranceVerificationRoute
 }
 export interface FileRoutesByTo {
   '/': typeof IndexRoute
   '/about': typeof AboutRoute
-  '/services': typeof ServicesRoute
+  '/services': typeof ServicesRouteWithChildren
+  '/services/accounts-receivable': typeof ServicesAccountsReceivableRoute
+  '/services/credentialing': typeof ServicesCredentialingRoute
+  '/services/dental-billing': typeof ServicesDentalBillingRoute
+  '/services/insurance-verification': typeof ServicesInsuranceVerificationRoute
 }
 export interface FileRoutesById {
   __root__: typeof rootRouteImport
   '/': typeof IndexRoute
   '/about': typeof AboutRoute
-  '/services': typeof ServicesRoute
+  '/services': typeof ServicesRouteWithChildren
+  '/services/accounts-receivable': typeof ServicesAccountsReceivableRoute
+  '/services/credentialing': typeof ServicesCredentialingRoute
+  '/services/dental-billing': typeof ServicesDentalBillingRoute
+  '/services/insurance-verification': typeof ServicesInsuranceVerificationRoute
 }
 export interface FileRouteTypes {
   fileRoutesByFullPath: FileRoutesByFullPath
-  fullPaths: '/' | '/about' | '/services'
+  fullPaths:
+    | '/'
+    | '/about'
+    | '/services'
+    | '/services/accounts-receivable'
+    | '/services/credentialing'
+    | '/services/dental-billing'
+    | '/services/insurance-verification'
   fileRoutesByTo: FileRoutesByTo
-  to: '/' | '/about' | '/services'
-  id: '__root__' | '/' | '/about' | '/services'
+  to:
+    | '/'
+    | '/about'
+    | '/services'
+    | '/services/accounts-receivable'
+    | '/services/credentialing'
+    | '/services/dental-billing'
+    | '/services/insurance-verification'
+  id:
+    | '__root__'
+    | '/'
+    | '/about'
+    | '/services'
+    | '/services/accounts-receivable'
+    | '/services/credentialing'
+    | '/services/dental-billing'
+    | '/services/insurance-verification'
   fileRoutesById: FileRoutesById
 }
 export interface RootRouteChildren {
   IndexRoute: typeof IndexRoute
   AboutRoute: typeof AboutRoute
-  ServicesRoute: typeof ServicesRoute
+  ServicesRoute: typeof ServicesRouteWithChildren
 }
 
 declare module '@tanstack/react-router' {
@@ -82,13 +142,59 @@ declare module '@tanstack/react-router' {
       preLoaderRoute: typeof IndexRouteImport
       parentRoute: typeof rootRouteImport
     }
+    '/services/insurance-verification': {
+      id: '/services/insurance-verification'
+      path: '/insurance-verification'
+      fullPath: '/services/insurance-verification'
+      preLoaderRoute: typeof ServicesInsuranceVerificationRouteImport
+      parentRoute: typeof ServicesRoute
+    }
+    '/services/dental-billing': {
+      id: '/services/dental-billing'
+      path: '/dental-billing'
+      fullPath: '/services/dental-billing'
+      preLoaderRoute: typeof ServicesDentalBillingRouteImport
+      parentRoute: typeof ServicesRoute
+    }
+    '/services/credentialing': {
+      id: '/services/credentialing'
+      path: '/credentialing'
+      fullPath: '/services/credentialing'
+      preLoaderRoute: typeof ServicesCredentialingRouteImport
+      parentRoute: typeof ServicesRoute
+    }
+    '/services/accounts-receivable': {
+      id: '/services/accounts-receivable'
+      path: '/accounts-receivable'
+      fullPath: '/services/accounts-receivable'
+      preLoaderRoute: typeof ServicesAccountsReceivableRouteImport
+      parentRoute: typeof ServicesRoute
+    }
   }
 }
+
+interface ServicesRouteChildren {
+  ServicesAccountsReceivableRoute: typeof ServicesAccountsReceivableRoute
+  ServicesCredentialingRoute: typeof ServicesCredentialingRoute
+  ServicesDentalBillingRoute: typeof ServicesDentalBillingRoute
+  ServicesInsuranceVerificationRoute: typeof ServicesInsuranceVerificationRoute
+}
+
+const ServicesRouteChildren: ServicesRouteChildren = {
+  ServicesAccountsReceivableRoute: ServicesAccountsReceivableRoute,
+  ServicesCredentialingRoute: ServicesCredentialingRoute,
+  ServicesDentalBillingRoute: ServicesDentalBillingRoute,
+  ServicesInsuranceVerificationRoute: ServicesInsuranceVerificationRoute,
+}
+
+const ServicesRouteWithChildren = ServicesRoute._addFileChildren(
+  ServicesRouteChildren,
+)
 
 const rootRouteChildren: RootRouteChildren = {
   IndexRoute: IndexRoute,
   AboutRoute: AboutRoute,
-  ServicesRoute: ServicesRoute,
+  ServicesRoute: ServicesRouteWithChildren,
 }
 export const routeTree = rootRouteImport
   ._addFileChildren(rootRouteChildren)
