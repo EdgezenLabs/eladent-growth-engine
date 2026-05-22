@@ -10,6 +10,7 @@
 
 import { Route as rootRouteImport } from './routes/__root'
 import { Route as SitemapDotxmlRouteImport } from './routes/sitemap[.]xml'
+import { Route as ServicesRouteImport } from './routes/services'
 import { Route as PrivacyPolicyRouteImport } from './routes/privacy-policy'
 import { Route as HipaaComplianceRouteImport } from './routes/hipaa-compliance'
 import { Route as ContactRouteImport } from './routes/contact'
@@ -26,6 +27,11 @@ import { Route as ServicesAccountsReceivableRouteImport } from './routes/service
 const SitemapDotxmlRoute = SitemapDotxmlRouteImport.update({
   id: '/sitemap.xml',
   path: '/sitemap.xml',
+  getParentRoute: () => rootRouteImport,
+} as any)
+const ServicesRoute = ServicesRouteImport.update({
+  id: '/services',
+  path: '/services',
   getParentRoute: () => rootRouteImport,
 } as any)
 const PrivacyPolicyRoute = PrivacyPolicyRouteImport.update({
@@ -64,9 +70,9 @@ const IndexRoute = IndexRouteImport.update({
   getParentRoute: () => rootRouteImport,
 } as any)
 const ServicesIndexRoute = ServicesIndexRouteImport.update({
-  id: '/services/',
-  path: '/services/',
-  getParentRoute: () => rootRouteImport,
+  id: '/',
+  path: '/',
+  getParentRoute: () => ServicesRoute,
 } as any)
 const ServicesInsuranceVerificationRoute =
   ServicesInsuranceVerificationRouteImport.update({
@@ -99,6 +105,7 @@ export interface FileRoutesByFullPath {
   '/contact': typeof ContactRoute
   '/hipaa-compliance': typeof HipaaComplianceRoute
   '/privacy-policy': typeof PrivacyPolicyRoute
+  '/services': typeof ServicesRouteWithChildren
   '/sitemap.xml': typeof SitemapDotxmlRoute
   '/services/accounts-receivable': typeof ServicesAccountsReceivableRoute
   '/services/credentialing': typeof ServicesCredentialingRoute
@@ -130,6 +137,7 @@ export interface FileRoutesById {
   '/contact': typeof ContactRoute
   '/hipaa-compliance': typeof HipaaComplianceRoute
   '/privacy-policy': typeof PrivacyPolicyRoute
+  '/services': typeof ServicesRouteWithChildren
   '/sitemap.xml': typeof SitemapDotxmlRoute
   '/services/accounts-receivable': typeof ServicesAccountsReceivableRoute
   '/services/credentialing': typeof ServicesCredentialingRoute
@@ -147,6 +155,7 @@ export interface FileRouteTypes {
     | '/contact'
     | '/hipaa-compliance'
     | '/privacy-policy'
+    | '/services'
     | '/sitemap.xml'
     | '/services/accounts-receivable'
     | '/services/credentialing'
@@ -177,6 +186,7 @@ export interface FileRouteTypes {
     | '/contact'
     | '/hipaa-compliance'
     | '/privacy-policy'
+    | '/services'
     | '/sitemap.xml'
     | '/services/accounts-receivable'
     | '/services/credentialing'
@@ -193,8 +203,8 @@ export interface RootRouteChildren {
   ContactRoute: typeof ContactRoute
   HipaaComplianceRoute: typeof HipaaComplianceRoute
   PrivacyPolicyRoute: typeof PrivacyPolicyRoute
+  ServicesRoute: typeof ServicesRouteWithChildren
   SitemapDotxmlRoute: typeof SitemapDotxmlRoute
-  ServicesIndexRoute: typeof ServicesIndexRoute
 }
 
 declare module '@tanstack/react-router' {
@@ -204,6 +214,13 @@ declare module '@tanstack/react-router' {
       path: '/sitemap.xml'
       fullPath: '/sitemap.xml'
       preLoaderRoute: typeof SitemapDotxmlRouteImport
+      parentRoute: typeof rootRouteImport
+    }
+    '/services': {
+      id: '/services'
+      path: '/services'
+      fullPath: '/services'
+      preLoaderRoute: typeof ServicesRouteImport
       parentRoute: typeof rootRouteImport
     }
     '/privacy-policy': {
@@ -257,10 +274,10 @@ declare module '@tanstack/react-router' {
     }
     '/services/': {
       id: '/services/'
-      path: '/services'
+      path: '/'
       fullPath: '/services/'
       preLoaderRoute: typeof ServicesIndexRouteImport
-      parentRoute: typeof rootRouteImport
+      parentRoute: typeof ServicesRoute
     }
     '/services/insurance-verification': {
       id: '/services/insurance-verification'
@@ -293,6 +310,26 @@ declare module '@tanstack/react-router' {
   }
 }
 
+interface ServicesRouteChildren {
+  ServicesAccountsReceivableRoute: typeof ServicesAccountsReceivableRoute
+  ServicesCredentialingRoute: typeof ServicesCredentialingRoute
+  ServicesDentalBillingRoute: typeof ServicesDentalBillingRoute
+  ServicesInsuranceVerificationRoute: typeof ServicesInsuranceVerificationRoute
+  ServicesIndexRoute: typeof ServicesIndexRoute
+}
+
+const ServicesRouteChildren: ServicesRouteChildren = {
+  ServicesAccountsReceivableRoute: ServicesAccountsReceivableRoute,
+  ServicesCredentialingRoute: ServicesCredentialingRoute,
+  ServicesDentalBillingRoute: ServicesDentalBillingRoute,
+  ServicesInsuranceVerificationRoute: ServicesInsuranceVerificationRoute,
+  ServicesIndexRoute: ServicesIndexRoute,
+}
+
+const ServicesRouteWithChildren = ServicesRoute._addFileChildren(
+  ServicesRouteChildren,
+)
+
 const rootRouteChildren: RootRouteChildren = {
   IndexRoute: IndexRoute,
   AboutRoute: AboutRoute,
@@ -301,8 +338,8 @@ const rootRouteChildren: RootRouteChildren = {
   ContactRoute: ContactRoute,
   HipaaComplianceRoute: HipaaComplianceRoute,
   PrivacyPolicyRoute: PrivacyPolicyRoute,
+  ServicesRoute: ServicesRouteWithChildren,
   SitemapDotxmlRoute: SitemapDotxmlRoute,
-  ServicesIndexRoute: ServicesIndexRoute,
 }
 export const routeTree = rootRouteImport
   ._addFileChildren(rootRouteChildren)
