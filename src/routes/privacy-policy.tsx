@@ -42,10 +42,10 @@ function Privacy() {
           <p>We do not sell personal information. We share information only with vetted sub-processors under contract, and with authorities if required by law.</p>
 
           <h2 className="mt-8 text-xl font-bold text-brand">Your rights</h2>
-          <p>You may request access, correction or deletion of your personal information by emailing privacy@eladent.com.</p>
+          <p>You may request access, correction or deletion of your personal information by emailing privacy@eladentconsulting.com.</p>
 
           <h2 className="mt-8 text-xl font-bold text-brand">Contact</h2>
-          <p>Eladent Consulting, 200 Market St, Suite 1500, Dallas, TX 75201 · privacy@eladent.com · (800) 555-0199</p>
+          <p>Eladent Consulting · privacy@eladentconsulting.com</p>
         </article>
       </section>
     </SiteLayout>
