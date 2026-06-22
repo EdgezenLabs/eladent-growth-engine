@@ -14,14 +14,15 @@ import { Route as ServicesRouteImport } from './routes/services'
 import { Route as PrivacyPolicyRouteImport } from './routes/privacy-policy'
 import { Route as HipaaComplianceRouteImport } from './routes/hipaa-compliance'
 import { Route as ContactRouteImport } from './routes/contact'
-import { Route as CareersRouteImport } from './routes/careers'
-import { Route as BlogRouteImport } from './routes/blog'
 import { Route as AboutRouteImport } from './routes/about'
 import { Route as IndexRouteImport } from './routes/index'
 import { Route as ServicesIndexRouteImport } from './routes/services.index'
+import { Route as ServicesPriorAuthorizationsRouteImport } from './routes/services.prior-authorizations'
+import { Route as ServicesPracticeOperationsRouteImport } from './routes/services.practice-operations'
+import { Route as ServicesPaymentPostingRouteImport } from './routes/services.payment-posting'
 import { Route as ServicesInsuranceVerificationRouteImport } from './routes/services.insurance-verification'
-import { Route as ServicesDentalBillingRouteImport } from './routes/services.dental-billing'
-import { Route as ServicesCredentialingRouteImport } from './routes/services.credentialing'
+import { Route as ServicesClaimSubmissionRouteImport } from './routes/services.claim-submission'
+import { Route as ServicesAnalyticsReportingRouteImport } from './routes/services.analytics-reporting'
 import { Route as ServicesAccountsReceivableRouteImport } from './routes/services.accounts-receivable'
 
 const SitemapDotxmlRoute = SitemapDotxmlRouteImport.update({
@@ -49,16 +50,6 @@ const ContactRoute = ContactRouteImport.update({
   path: '/contact',
   getParentRoute: () => rootRouteImport,
 } as any)
-const CareersRoute = CareersRouteImport.update({
-  id: '/careers',
-  path: '/careers',
-  getParentRoute: () => rootRouteImport,
-} as any)
-const BlogRoute = BlogRouteImport.update({
-  id: '/blog',
-  path: '/blog',
-  getParentRoute: () => rootRouteImport,
-} as any)
 const AboutRoute = AboutRouteImport.update({
   id: '/about',
   path: '/about',
@@ -74,22 +65,40 @@ const ServicesIndexRoute = ServicesIndexRouteImport.update({
   path: '/',
   getParentRoute: () => ServicesRoute,
 } as any)
+const ServicesPriorAuthorizationsRoute =
+  ServicesPriorAuthorizationsRouteImport.update({
+    id: '/prior-authorizations',
+    path: '/prior-authorizations',
+    getParentRoute: () => ServicesRoute,
+  } as any)
+const ServicesPracticeOperationsRoute =
+  ServicesPracticeOperationsRouteImport.update({
+    id: '/practice-operations',
+    path: '/practice-operations',
+    getParentRoute: () => ServicesRoute,
+  } as any)
+const ServicesPaymentPostingRoute = ServicesPaymentPostingRouteImport.update({
+  id: '/payment-posting',
+  path: '/payment-posting',
+  getParentRoute: () => ServicesRoute,
+} as any)
 const ServicesInsuranceVerificationRoute =
   ServicesInsuranceVerificationRouteImport.update({
     id: '/insurance-verification',
     path: '/insurance-verification',
     getParentRoute: () => ServicesRoute,
   } as any)
-const ServicesDentalBillingRoute = ServicesDentalBillingRouteImport.update({
-  id: '/dental-billing',
-  path: '/dental-billing',
+const ServicesClaimSubmissionRoute = ServicesClaimSubmissionRouteImport.update({
+  id: '/claim-submission',
+  path: '/claim-submission',
   getParentRoute: () => ServicesRoute,
 } as any)
-const ServicesCredentialingRoute = ServicesCredentialingRouteImport.update({
-  id: '/credentialing',
-  path: '/credentialing',
-  getParentRoute: () => ServicesRoute,
-} as any)
+const ServicesAnalyticsReportingRoute =
+  ServicesAnalyticsReportingRouteImport.update({
+    id: '/analytics-reporting',
+    path: '/analytics-reporting',
+    getParentRoute: () => ServicesRoute,
+  } as any)
 const ServicesAccountsReceivableRoute =
   ServicesAccountsReceivableRouteImport.update({
     id: '/accounts-receivable',
@@ -100,49 +109,52 @@ const ServicesAccountsReceivableRoute =
 export interface FileRoutesByFullPath {
   '/': typeof IndexRoute
   '/about': typeof AboutRoute
-  '/blog': typeof BlogRoute
-  '/careers': typeof CareersRoute
   '/contact': typeof ContactRoute
   '/hipaa-compliance': typeof HipaaComplianceRoute
   '/privacy-policy': typeof PrivacyPolicyRoute
   '/services': typeof ServicesRouteWithChildren
   '/sitemap.xml': typeof SitemapDotxmlRoute
   '/services/accounts-receivable': typeof ServicesAccountsReceivableRoute
-  '/services/credentialing': typeof ServicesCredentialingRoute
-  '/services/dental-billing': typeof ServicesDentalBillingRoute
+  '/services/analytics-reporting': typeof ServicesAnalyticsReportingRoute
+  '/services/claim-submission': typeof ServicesClaimSubmissionRoute
   '/services/insurance-verification': typeof ServicesInsuranceVerificationRoute
+  '/services/payment-posting': typeof ServicesPaymentPostingRoute
+  '/services/practice-operations': typeof ServicesPracticeOperationsRoute
+  '/services/prior-authorizations': typeof ServicesPriorAuthorizationsRoute
   '/services/': typeof ServicesIndexRoute
 }
 export interface FileRoutesByTo {
   '/': typeof IndexRoute
   '/about': typeof AboutRoute
-  '/blog': typeof BlogRoute
-  '/careers': typeof CareersRoute
   '/contact': typeof ContactRoute
   '/hipaa-compliance': typeof HipaaComplianceRoute
   '/privacy-policy': typeof PrivacyPolicyRoute
   '/sitemap.xml': typeof SitemapDotxmlRoute
   '/services/accounts-receivable': typeof ServicesAccountsReceivableRoute
-  '/services/credentialing': typeof ServicesCredentialingRoute
-  '/services/dental-billing': typeof ServicesDentalBillingRoute
+  '/services/analytics-reporting': typeof ServicesAnalyticsReportingRoute
+  '/services/claim-submission': typeof ServicesClaimSubmissionRoute
   '/services/insurance-verification': typeof ServicesInsuranceVerificationRoute
+  '/services/payment-posting': typeof ServicesPaymentPostingRoute
+  '/services/practice-operations': typeof ServicesPracticeOperationsRoute
+  '/services/prior-authorizations': typeof ServicesPriorAuthorizationsRoute
   '/services': typeof ServicesIndexRoute
 }
 export interface FileRoutesById {
   __root__: typeof rootRouteImport
   '/': typeof IndexRoute
   '/about': typeof AboutRoute
-  '/blog': typeof BlogRoute
-  '/careers': typeof CareersRoute
   '/contact': typeof ContactRoute
   '/hipaa-compliance': typeof HipaaComplianceRoute
   '/privacy-policy': typeof PrivacyPolicyRoute
   '/services': typeof ServicesRouteWithChildren
   '/sitemap.xml': typeof SitemapDotxmlRoute
   '/services/accounts-receivable': typeof ServicesAccountsReceivableRoute
-  '/services/credentialing': typeof ServicesCredentialingRoute
-  '/services/dental-billing': typeof ServicesDentalBillingRoute
+  '/services/analytics-reporting': typeof ServicesAnalyticsReportingRoute
+  '/services/claim-submission': typeof ServicesClaimSubmissionRoute
   '/services/insurance-verification': typeof ServicesInsuranceVerificationRoute
+  '/services/payment-posting': typeof ServicesPaymentPostingRoute
+  '/services/practice-operations': typeof ServicesPracticeOperationsRoute
+  '/services/prior-authorizations': typeof ServicesPriorAuthorizationsRoute
   '/services/': typeof ServicesIndexRoute
 }
 export interface FileRouteTypes {
@@ -150,56 +162,57 @@ export interface FileRouteTypes {
   fullPaths:
     | '/'
     | '/about'
-    | '/blog'
-    | '/careers'
     | '/contact'
     | '/hipaa-compliance'
     | '/privacy-policy'
     | '/services'
     | '/sitemap.xml'
     | '/services/accounts-receivable'
-    | '/services/credentialing'
-    | '/services/dental-billing'
+    | '/services/analytics-reporting'
+    | '/services/claim-submission'
     | '/services/insurance-verification'
+    | '/services/payment-posting'
+    | '/services/practice-operations'
+    | '/services/prior-authorizations'
     | '/services/'
   fileRoutesByTo: FileRoutesByTo
   to:
     | '/'
     | '/about'
-    | '/blog'
-    | '/careers'
     | '/contact'
     | '/hipaa-compliance'
     | '/privacy-policy'
     | '/sitemap.xml'
     | '/services/accounts-receivable'
-    | '/services/credentialing'
-    | '/services/dental-billing'
+    | '/services/analytics-reporting'
+    | '/services/claim-submission'
     | '/services/insurance-verification'
+    | '/services/payment-posting'
+    | '/services/practice-operations'
+    | '/services/prior-authorizations'
     | '/services'
   id:
     | '__root__'
     | '/'
     | '/about'
-    | '/blog'
-    | '/careers'
     | '/contact'
     | '/hipaa-compliance'
     | '/privacy-policy'
     | '/services'
     | '/sitemap.xml'
     | '/services/accounts-receivable'
-    | '/services/credentialing'
-    | '/services/dental-billing'
+    | '/services/analytics-reporting'
+    | '/services/claim-submission'
     | '/services/insurance-verification'
+    | '/services/payment-posting'
+    | '/services/practice-operations'
+    | '/services/prior-authorizations'
     | '/services/'
   fileRoutesById: FileRoutesById
 }
 export interface RootRouteChildren {
   IndexRoute: typeof IndexRoute
   AboutRoute: typeof AboutRoute
-  BlogRoute: typeof BlogRoute
-  CareersRoute: typeof CareersRoute
   ContactRoute: typeof ContactRoute
   HipaaComplianceRoute: typeof HipaaComplianceRoute
   PrivacyPolicyRoute: typeof PrivacyPolicyRoute
@@ -244,20 +257,6 @@ declare module '@tanstack/react-router' {
       preLoaderRoute: typeof ContactRouteImport
       parentRoute: typeof rootRouteImport
     }
-    '/careers': {
-      id: '/careers'
-      path: '/careers'
-      fullPath: '/careers'
-      preLoaderRoute: typeof CareersRouteImport
-      parentRoute: typeof rootRouteImport
-    }
-    '/blog': {
-      id: '/blog'
-      path: '/blog'
-      fullPath: '/blog'
-      preLoaderRoute: typeof BlogRouteImport
-      parentRoute: typeof rootRouteImport
-    }
     '/about': {
       id: '/about'
       path: '/about'
@@ -279,6 +278,27 @@ declare module '@tanstack/react-router' {
       preLoaderRoute: typeof ServicesIndexRouteImport
       parentRoute: typeof ServicesRoute
     }
+    '/services/prior-authorizations': {
+      id: '/services/prior-authorizations'
+      path: '/prior-authorizations'
+      fullPath: '/services/prior-authorizations'
+      preLoaderRoute: typeof ServicesPriorAuthorizationsRouteImport
+      parentRoute: typeof ServicesRoute
+    }
+    '/services/practice-operations': {
+      id: '/services/practice-operations'
+      path: '/practice-operations'
+      fullPath: '/services/practice-operations'
+      preLoaderRoute: typeof ServicesPracticeOperationsRouteImport
+      parentRoute: typeof ServicesRoute
+    }
+    '/services/payment-posting': {
+      id: '/services/payment-posting'
+      path: '/payment-posting'
+      fullPath: '/services/payment-posting'
+      preLoaderRoute: typeof ServicesPaymentPostingRouteImport
+      parentRoute: typeof ServicesRoute
+    }
     '/services/insurance-verification': {
       id: '/services/insurance-verification'
       path: '/insurance-verification'
@@ -286,18 +306,18 @@ declare module '@tanstack/react-router' {
       preLoaderRoute: typeof ServicesInsuranceVerificationRouteImport
       parentRoute: typeof ServicesRoute
     }
-    '/services/dental-billing': {
-      id: '/services/dental-billing'
-      path: '/dental-billing'
-      fullPath: '/services/dental-billing'
-      preLoaderRoute: typeof ServicesDentalBillingRouteImport
+    '/services/claim-submission': {
+      id: '/services/claim-submission'
+      path: '/claim-submission'
+      fullPath: '/services/claim-submission'
+      preLoaderRoute: typeof ServicesClaimSubmissionRouteImport
       parentRoute: typeof ServicesRoute
     }
-    '/services/credentialing': {
-      id: '/services/credentialing'
-      path: '/credentialing'
-      fullPath: '/services/credentialing'
-      preLoaderRoute: typeof ServicesCredentialingRouteImport
+    '/services/analytics-reporting': {
+      id: '/services/analytics-reporting'
+      path: '/analytics-reporting'
+      fullPath: '/services/analytics-reporting'
+      preLoaderRoute: typeof ServicesAnalyticsReportingRouteImport
       parentRoute: typeof ServicesRoute
     }
     '/services/accounts-receivable': {
@@ -312,17 +332,23 @@ declare module '@tanstack/react-router' {
 
 interface ServicesRouteChildren {
   ServicesAccountsReceivableRoute: typeof ServicesAccountsReceivableRoute
-  ServicesCredentialingRoute: typeof ServicesCredentialingRoute
-  ServicesDentalBillingRoute: typeof ServicesDentalBillingRoute
+  ServicesAnalyticsReportingRoute: typeof ServicesAnalyticsReportingRoute
+  ServicesClaimSubmissionRoute: typeof ServicesClaimSubmissionRoute
   ServicesInsuranceVerificationRoute: typeof ServicesInsuranceVerificationRoute
+  ServicesPaymentPostingRoute: typeof ServicesPaymentPostingRoute
+  ServicesPracticeOperationsRoute: typeof ServicesPracticeOperationsRoute
+  ServicesPriorAuthorizationsRoute: typeof ServicesPriorAuthorizationsRoute
   ServicesIndexRoute: typeof ServicesIndexRoute
 }
 
 const ServicesRouteChildren: ServicesRouteChildren = {
   ServicesAccountsReceivableRoute: ServicesAccountsReceivableRoute,
-  ServicesCredentialingRoute: ServicesCredentialingRoute,
-  ServicesDentalBillingRoute: ServicesDentalBillingRoute,
+  ServicesAnalyticsReportingRoute: ServicesAnalyticsReportingRoute,
+  ServicesClaimSubmissionRoute: ServicesClaimSubmissionRoute,
   ServicesInsuranceVerificationRoute: ServicesInsuranceVerificationRoute,
+  ServicesPaymentPostingRoute: ServicesPaymentPostingRoute,
+  ServicesPracticeOperationsRoute: ServicesPracticeOperationsRoute,
+  ServicesPriorAuthorizationsRoute: ServicesPriorAuthorizationsRoute,
   ServicesIndexRoute: ServicesIndexRoute,
 }
 
@@ -333,8 +359,6 @@ const ServicesRouteWithChildren = ServicesRoute._addFileChildren(
 const rootRouteChildren: RootRouteChildren = {
   IndexRoute: IndexRoute,
   AboutRoute: AboutRoute,
-  BlogRoute: BlogRoute,
-  CareersRoute: CareersRoute,
   ContactRoute: ContactRoute,
   HipaaComplianceRoute: HipaaComplianceRoute,
   PrivacyPolicyRoute: PrivacyPolicyRoute,

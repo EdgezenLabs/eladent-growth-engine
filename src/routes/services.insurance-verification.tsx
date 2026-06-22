@@ -1,14 +1,14 @@
 import { createFileRoute } from "@tanstack/react-router";
 import { ServicePage } from "@/components/site/ServicePage";
-import { ShieldCheck, Clock, FileCheck2, Smile, Users, BarChart3 } from "lucide-react";
+import { ShieldCheck, Smile, FileCheck2, BarChart3, Users, Calendar } from "lucide-react";
 
 export const Route = createFileRoute("/services/insurance-verification")({
   head: () => ({
     meta: [
-      { title: "Dental Insurance Verification Services | Eladent Consulting" },
-      { name: "description", content: "48-hour pre-appointment dental insurance verification with detailed breakdowns and PMS-ready notes. Reduce surprises and improve case acceptance." },
-      { property: "og:title", content: "Dental Insurance Verification Services" },
-      { property: "og:description", content: "Real-time eligibility and benefit breakdowns delivered to your team before every visit." },
+      { title: "Dental Insurance Verification & Benefits | Eladent Consulting" },
+      { name: "description", content: "Accurate dental insurance and benefit verification — eligibility, deductibles, maximums, frequencies, waiting periods, missing tooth clause and COB." },
+      { property: "og:title", content: "Dental Insurance Verification & Benefits" },
+      { property: "og:description", content: "Accurate verification is the foundation of a healthy revenue cycle." },
       { property: "og:url", content: "/services/insurance-verification" },
     ],
     links: [{ rel: "canonical", href: "/services/insurance-verification" }],
@@ -19,34 +19,34 @@ export const Route = createFileRoute("/services/insurance-verification")({
 function Page() {
   return (
     <ServicePage
-      eyebrow="Insurance Verification"
-      title="Dental Insurance Verification — done 48 hours before every appointment"
-      subtitle="Detailed, accurate eligibility and benefit breakdowns delivered to your PMS so your team can present treatment with confidence and zero surprises."
+      eyebrow="Insurance Verification & Benefits"
+      title="Insurance verification and benefits — the foundation of a healthy revenue cycle"
+      subtitle="Accurate insurance verification means fewer denials, better treatment acceptance and a stronger patient financial experience from the very first visit."
       challenges={[
-        "Patients arriving with inactive or different coverage than expected",
-        "Front desk burning hours on hold with insurance carriers",
-        "Treatment plans collapsing at the desk because of unclear benefits",
-        "Missed frequencies, waiting periods and downgrades",
+        "Patients arriving with inactive coverage or unexpected benefits",
+        "Front office time consumed by payer phone calls and portals",
+        "Treatment plans falling apart because of unclear benefits",
+        "Missed frequencies, waiting periods, downgrades and COB",
       ]}
-      solution="Our verification specialists complete full breakdowns 48 hours before each appointment — not just eligibility, but maximums, frequencies, waiting periods, downgrades, missing-tooth clauses and patient responsibility — entered directly into your PMS."
+      solution="Our team delivers complete benefit verification — eligibility, deductible, remaining maximum, waiting period, frequency limitations, missing tooth clause and coordination of benefits — before each appointment."
       process={[
-        { title: "Schedule pull", desc: "We pull tomorrow's schedule plus 2 days out automatically each morning." },
-        { title: "Full breakdown", desc: "Specialists call payers and pull portals for complete benefits." },
-        { title: "PMS-ready notes", desc: "Standardized notes entered in Dentrix/Eaglesoft/Open Dental for your team." },
-        { title: "Day-of brief", desc: "Front desk gets a clean summary so treatment presentation is bulletproof." },
+        { title: "Eligibility", desc: "Active eligibility confirmed for every scheduled patient." },
+        { title: "Full benefit breakdown", desc: "Deductibles, maximums, frequencies, waiting periods and downgrades captured." },
+        { title: "Clauses & COB", desc: "Missing tooth clause and coordination of benefits verified upfront." },
+        { title: "Office-ready notes", desc: "Verified benefits documented so your team can present treatment confidently." },
       ]}
       benefits={[
-        { icon: Clock, title: "Hours saved daily", desc: "Free your front desk from hold music and let them focus on patients." },
-        { icon: Smile, title: "Higher case acceptance", desc: "Patients say yes more when they know their financial picture upfront." },
-        { icon: FileCheck2, title: "Cleaner claims", desc: "Accurate benefits at intake means fewer denials downstream." },
-        { icon: ShieldCheck, title: "HIPAA-compliant", desc: "Verified information stored and transmitted through encrypted channels." },
-        { icon: Users, title: "Patient trust", desc: "No more surprise balances — patients trust your practice." },
-        { icon: BarChart3, title: "Reporting", desc: "Weekly visibility into verification volume, payer mix and gaps." },
+        { icon: ShieldCheck, title: "Reduced claim denials", desc: "Accurate benefits upfront mean cleaner claims downstream." },
+        { icon: Smile, title: "Improved treatment acceptance", desc: "Patients say yes more often when they know their financial picture." },
+        { icon: FileCheck2, title: "Better patient transparency", desc: "Clear estimates protect patient trust and your practice's brand." },
+        { icon: Calendar, title: "More accurate treatment planning", desc: "Frequencies and limitations are known before the plan is presented." },
+        { icon: Users, title: "Less front-office burden", desc: "Your team stops chasing payers and gets back to patients." },
+        { icon: BarChart3, title: "Stronger revenue cycle", desc: "Verification done right makes every downstream step easier." },
       ]}
       faqs={[
-        { q: "How far in advance do you verify?", a: "Standard is 48 hours pre-appointment, with same-day rush available for add-ons." },
-        { q: "Which payers do you handle?", a: "All major dental PPOs, DHMOs, Medicaid and discount plans across all 50 states." },
-        { q: "Do you enter the info into our PMS?", a: "Yes — directly into your patient's record with standardized note formats your team can scan in seconds." },
+        { q: "What's included in a full benefit verification?", a: "Eligibility, deductible, remaining maximum, waiting period, frequency limitations, missing tooth clause and coordination of benefits." },
+        { q: "Do you handle Medicaid plans?", a: "Yes — we verify commercial PPO, DHMO and Medicaid plans." },
+        { q: "How is the verified information delivered?", a: "Office-ready verification notes are documented so your team can scan and present in seconds." },
       ]}
     />
   );

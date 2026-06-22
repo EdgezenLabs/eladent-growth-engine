@@ -1,23 +1,24 @@
 import { Link } from "@tanstack/react-router";
 import { useEffect, useState } from "react";
-import { Menu, X, ChevronDown, Phone } from "lucide-react";
+import { Menu, X, ChevronDown } from "lucide-react";
 import { Logo } from "./Logo";
 
 const services = [
-  { to: "/services/dental-billing", label: "Dental Billing", desc: "End-to-end claim submission" },
-  { to: "/services/insurance-verification", label: "Insurance Verification", desc: "Real-time eligibility checks" },
-  { to: "/services/credentialing", label: "Credentialing", desc: "Provider enrollment & re-credentialing" },
-  { to: "/services/accounts-receivable", label: "Accounts Receivable", desc: "AR follow-up & denial management" },
-];
+  { to: "/services/insurance-verification", label: "Insurance Verification & Benefits", desc: "Eligibility, benefits, COB" },
+  { to: "/services/prior-authorizations", label: "Prior Authorizations", desc: "Medicaid & PPO approvals" },
+  { to: "/services/claim-submission", label: "Claim Submission", desc: "Submission, tracking, denials" },
+  { to: "/services/payment-posting", label: "Payment Posting", desc: "EFT, ERA & reconciliation" },
+  { to: "/services/accounts-receivable", label: "Accounts Receivable", desc: "Aging follow-up & appeals" },
+  { to: "/services/practice-operations", label: "Practice Operations", desc: "Workflow & SOP consulting" },
+  { to: "/services/analytics-reporting", label: "Analytics & Reporting", desc: "KPIs and performance reporting" },
+] as const;
 
 const nav = [
   { to: "/", label: "Home" },
   { to: "/about", label: "About" },
   { to: "/services", label: "Services", mega: true },
-  { to: "/blog", label: "Blog" },
-  { to: "/careers", label: "Careers" },
   { to: "/contact", label: "Contact" },
-];
+] as const;
 
 export function Header() {
   const [scrolled, setScrolled] = useState(false);
@@ -42,7 +43,7 @@ export function Header() {
 
         <nav className="hidden lg:flex items-center gap-1">
           {nav.map((item) =>
-            item.mega ? (
+            "mega" in item && item.mega ? (
               <div
                 key={item.to}
                 className="relative"
@@ -56,7 +57,7 @@ export function Header() {
                   {item.label} <ChevronDown className="h-3.5 w-3.5" />
                 </Link>
                 {megaOpen && (
-                  <div className="absolute left-1/2 -translate-x-1/2 top-full pt-3 w-[640px]">
+                  <div className="absolute left-1/2 -translate-x-1/2 top-full pt-3 w-[680px]">
                     <div className="rounded-2xl bg-white shadow-elevated border border-border p-6 grid grid-cols-2 gap-2">
                       {services.map((s) => (
                         <Link
@@ -74,7 +75,7 @@ export function Header() {
                       >
                         <div>
                           <div className="text-sm font-semibold">Full service catalog</div>
-                          <div className="text-xs text-white/80">Billing, RCM, consulting & more</div>
+                          <div className="text-xs text-white/80">Revenue cycle, operations & analytics</div>
                         </div>
                         <span className="text-sm">View all →</span>
                       </Link>
@@ -97,9 +98,6 @@ export function Header() {
         </nav>
 
         <div className="hidden md:flex items-center gap-3">
-          <a href="tel:+18005550199" className="text-sm font-medium text-foreground/80 hover:text-brand inline-flex items-center gap-1.5">
-            <Phone className="h-4 w-4 text-teal" /> (800) 555-0199
-          </a>
           <Link
             to="/contact"
             className="inline-flex items-center justify-center rounded-full bg-gradient-brand text-white text-sm font-semibold px-5 py-2.5 shadow-soft hover:shadow-elevated transition-shadow"
@@ -142,7 +140,7 @@ export function Header() {
               onClick={() => setOpen(false)}
               className="mt-3 inline-flex justify-center rounded-full bg-gradient-brand text-white font-semibold px-5 py-3"
             >
-              Book Free Consultation
+              Schedule a Free Consultation
             </Link>
           </div>
         </div>
