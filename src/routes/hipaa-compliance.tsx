@@ -54,7 +54,7 @@ function HIPAA() {
           <Reveal>
             <h2 className="text-2xl md:text-3xl font-bold text-brand">Our safeguards</h2>
             <p className="mt-3 text-muted-foreground">Eladent maintains administrative, physical and technical safeguards aligned with the HIPAA Security Rule. Our policies cover workforce training, incident response, access management, encryption, secure disposal and ongoing risk assessments.</p>
-            <p className="mt-4 text-muted-foreground">Request our HIPAA compliance overview, current BAA template or SOC 2 readiness summary by emailing <a className="text-teal" href="mailto:security@eladent.com">security@eladent.com</a>.</p>
+            <p className="mt-4 text-muted-foreground">Request our HIPAA compliance overview, current BAA template or SOC 2 readiness summary by emailing <a className="text-teal" href="mailto:security@eladentconsulting.com">security@eladentconsulting.com</a>.</p>
           </Reveal>
         </div>
       </section>
