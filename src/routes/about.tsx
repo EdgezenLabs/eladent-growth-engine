@@ -2,16 +2,15 @@ import { createFileRoute, Link } from "@tanstack/react-router";
 import { SiteLayout } from "@/components/site/SiteLayout";
 import { PageHero } from "@/components/site/PageHero";
 import { Reveal } from "@/components/site/Reveal";
-import { Award, Heart, Target, Users, Sparkles, ShieldCheck, ArrowRight } from "lucide-react";
-import team from "@/assets/team.jpg";
+import { Target, Sparkles, Award, ArrowRight, Briefcase } from "lucide-react";
 
 export const Route = createFileRoute("/about")({
   head: () => ({
     meta: [
-      { title: "About Eladent Consulting — Dental RCM & Billing Experts" },
-      { name: "description", content: "Meet the dental billing veterans behind Eladent Consulting. Our mission, leadership and values powering thousands of US dental practices." },
+      { title: "About Eladent Consulting — Dental RCM & Operations Consulting" },
+      { name: "description", content: "Eladent Consulting helps dental practices strengthen their revenue cycle, maximize collections and improve operational efficiency. Founded by Joshua George." },
       { property: "og:title", content: "About Eladent Consulting" },
-      { property: "og:description", content: "Our mission, leadership and values powering thousands of US dental practices." },
+      { property: "og:description", content: "Helping dental practices collect more, reduce inefficiencies and gain visibility into financial performance." },
       { property: "og:url", content: "/about" },
     ],
     links: [{ rel: "canonical", href: "/about" }],
@@ -19,18 +18,16 @@ export const Route = createFileRoute("/about")({
   component: About,
 });
 
-const values = [
-  { icon: ShieldCheck, title: "Integrity first", desc: "Compliance, transparency and patient trust never get traded for short-term wins." },
-  { icon: Target, title: "Outcome obsessed", desc: "Every workflow ladders up to two metrics: more collections, fewer denials." },
-  { icon: Heart, title: "Partnership", desc: "We act like an extension of your front desk — not a faceless vendor." },
-  { icon: Sparkles, title: "Modern & precise", desc: "Automation where it helps, human review where it matters." },
-];
-
-const leaders = [
-  { name: "Maya Thompson", role: "Founder & CEO", bio: "20+ years in dental RCM. Previously led billing operations for a 60-location DSO.", initials: "MT" },
-  { name: "Daniel Park", role: "Head of Operations", bio: "Built Eladent's HIPAA-compliant delivery model and 24/7 follow-up engine.", initials: "DP" },
-  { name: "Rachel Alvarez", role: "VP of Client Success", bio: "Dental practice consultant focused on multi-location growth and KPI design.", initials: "RA" },
-  { name: "Jordan Lee", role: "Director of Credentialing", bio: "Has enrolled 1,800+ providers across PPO, Medicaid and DHMO networks.", initials: "JL" },
+const expertise = [
+  "Revenue Cycle Management",
+  "Payment Posting Operations",
+  "Insurance Reconciliation",
+  "Accounts Receivable Management",
+  "Prior Authorization Workflows",
+  "Dental Operations Consulting",
+  "Team Leadership",
+  "Process Improvement",
+  "KPI Development & Reporting",
 ];
 
 function About() {
@@ -38,101 +35,138 @@ function About() {
     <SiteLayout>
       <PageHero
         eyebrow="About Eladent"
-        title="Built by dental veterans. Powered by modern RCM."
-        subtitle="We exist to give dental practices the same financial discipline and reporting that the best DSOs in America rely on — without the overhead."
+        title="About Eladent Consulting"
+        subtitle="Helping dental practices strengthen their revenue cycle, maximize collections and improve operational performance."
       />
 
       <section className="py-20">
-        <div className="container-prose grid lg:grid-cols-2 gap-14 items-center">
-          <Reveal>
-            <img src={team} alt="The Eladent Consulting team" width={1280} height={896} loading="lazy" className="rounded-3xl shadow-elevated ring-1 ring-border" />
-          </Reveal>
+        <div className="container-prose max-w-3xl">
           <Reveal>
             <div className="text-xs uppercase tracking-[0.2em] text-teal font-semibold">Our story</div>
-            <h2 className="mt-3 text-3xl md:text-4xl font-bold text-brand text-balance">A decade of dental billing expertise, now available to every practice.</h2>
-            <p className="mt-5 text-muted-foreground">Eladent Consulting was founded by a team of dental RCM operators who watched too many great practices lose 6–8% of revenue to denials, slow follow-up and poor reporting. We built the platform — and the team — we wish we’d had.</p>
-            <p className="mt-4 text-muted-foreground">Today, US-based dental practices, orthodontic groups and DSOs trust Eladent to run their billing, credentialing and AR with measurable results.</p>
+            <h2 className="mt-3 text-3xl md:text-4xl font-bold text-brand text-balance">Built to help dental practices collect more — and operate better.</h2>
+            <div className="mt-6 space-y-5 text-muted-foreground text-lg leading-relaxed">
+              <p>
+                Eladent Consulting was founded to help dental practices strengthen their revenue cycle and maximize collections.
+              </p>
+              <p>
+                Our team combines experience in dental billing, insurance reconciliation, payment posting, accounts receivable
+                management, prior authorizations and operational process improvement.
+              </p>
+              <p>
+                We understand the challenges dental offices face with insurance delays, claim denials, aging receivables,
+                administrative workload and production bottlenecks.
+              </p>
+              <p>
+                Whether you are an independent practice, group practice or growing DSO, Eladent Consulting provides the
+                expertise and support needed to strengthen your revenue cycle and improve operational performance.
+              </p>
+            </div>
           </Reveal>
         </div>
       </section>
 
-      <section className="py-20 bg-surface">
+      <section className="py-16 bg-surface">
         <div className="container-prose grid md:grid-cols-3 gap-6">
           <Reveal>
             <div className="rounded-2xl bg-white border border-border p-7 h-full">
               <Target className="h-6 w-6 text-teal" />
               <h3 className="mt-4 text-xl font-semibold text-brand">Mission</h3>
-              <p className="mt-2 text-muted-foreground">Turn every dental practice into a financially healthy, growth-ready business.</p>
+              <p className="mt-2 text-muted-foreground">
+                Help dental practices collect more, reduce inefficiencies, improve workflows and gain complete visibility
+                into their financial performance.
+              </p>
             </div>
           </Reveal>
           <Reveal delay={0.08}>
             <div className="rounded-2xl bg-white border border-border p-7 h-full">
               <Sparkles className="h-6 w-6 text-teal" />
-              <h3 className="mt-4 text-xl font-semibold text-brand">Vision</h3>
-              <p className="mt-2 text-muted-foreground">Become the most trusted dental RCM partner in the United States.</p>
+              <h3 className="mt-4 text-xl font-semibold text-brand">Approach</h3>
+              <p className="mt-2 text-muted-foreground">
+                A strategic partnership focused on practical, results-driven solutions across revenue cycle and operations —
+                not generic outsourcing.
+              </p>
             </div>
           </Reveal>
           <Reveal delay={0.16}>
             <div className="rounded-2xl bg-white border border-border p-7 h-full">
               <Award className="h-6 w-6 text-teal" />
-              <h3 className="mt-4 text-xl font-semibold text-brand">Promise</h3>
-              <p className="mt-2 text-muted-foreground">Measurable lift in collections within 90 days — or we work for free until you see it.</p>
+              <h3 className="mt-4 text-xl font-semibold text-brand">Focus</h3>
+              <p className="mt-2 text-muted-foreground">
+                Stronger collections, lower aging, faster authorizations and operational efficiency — measured against KPIs
+                that matter to your practice.
+              </p>
             </div>
           </Reveal>
         </div>
       </section>
 
+      {/* LEADERSHIP */}
       <section className="py-20">
         <div className="container-prose">
           <Reveal>
-            <div className="text-xs uppercase tracking-[0.2em] text-teal font-semibold">Values</div>
-            <h2 className="mt-3 text-3xl md:text-4xl font-bold text-brand text-balance">What we stand for</h2>
+            <div className="text-xs uppercase tracking-[0.2em] text-teal font-semibold">Leadership</div>
+            <h2 className="mt-3 text-3xl md:text-4xl font-bold text-brand text-balance">Meet our founder</h2>
           </Reveal>
-          <div className="mt-10 grid sm:grid-cols-2 lg:grid-cols-4 gap-5">
-            {values.map((v, i) => {
-              const Icon = v.icon;
-              return (
-                <Reveal key={v.title} delay={i * 0.06}>
-                  <div className="rounded-2xl bg-white border border-border p-6 h-full">
-                    <Icon className="h-6 w-6 text-teal" />
-                    <h3 className="mt-3 font-semibold text-brand">{v.title}</h3>
-                    <p className="mt-2 text-sm text-muted-foreground">{v.desc}</p>
+
+          <Reveal>
+            <div className="mt-10 rounded-3xl bg-white border border-border p-8 md:p-10 grid md:grid-cols-12 gap-8 items-start shadow-soft">
+              <div className="md:col-span-4">
+                <div className="aspect-square w-full rounded-2xl bg-gradient-brand grid place-items-center text-white">
+                  <div className="text-center px-6">
+                    <div className="mx-auto h-20 w-20 rounded-full bg-white/15 grid place-items-center text-4xl font-bold">
+                      JG
+                    </div>
+                    <div className="mt-5 text-xl font-semibold">Joshua George</div>
+                    <div className="text-sm text-white/80">Founder & Revenue Cycle Consultant</div>
                   </div>
-                </Reveal>
-              );
-            })}
-          </div>
+                </div>
+              </div>
+              <div className="md:col-span-8">
+                <div className="inline-flex items-center gap-2 rounded-full bg-teal/10 text-teal px-3 py-1 text-xs font-medium">
+                  <Briefcase className="h-3.5 w-3.5" /> 10+ years in dental revenue cycle & operations
+                </div>
+                <h3 className="mt-4 text-2xl font-semibold text-brand">Joshua George</h3>
+                <div className="text-sm text-teal font-medium uppercase tracking-wider">Founder & Revenue Cycle Consultant</div>
+
+                <div className="mt-5 space-y-4 text-muted-foreground leading-relaxed">
+                  <p>
+                    Joshua George brings over a decade of experience in business operations and dental revenue cycle management.
+                  </p>
+                  <p>
+                    He has led payment posting, insurance reconciliation, workflow development, SOP creation, operational
+                    improvement initiatives and team leadership supporting multiple U.S. dental practices.
+                  </p>
+                  <p>
+                    Joshua founded Eladent Consulting to provide dental practices with practical, results-driven solutions
+                    that improve financial performance and operational efficiency.
+                  </p>
+                </div>
+
+                <div className="mt-6">
+                  <div className="text-xs uppercase tracking-wider text-muted-foreground">Areas of expertise</div>
+                  <div className="mt-3 flex flex-wrap gap-2">
+                    {expertise.map((e) => (
+                      <span key={e} className="rounded-full bg-surface border border-border px-3 py-1.5 text-xs font-medium text-brand">
+                        {e}
+                      </span>
+                    ))}
+                  </div>
+                </div>
+              </div>
+            </div>
+          </Reveal>
         </div>
       </section>
 
       <section className="py-20 bg-surface">
         <div className="container-prose">
-          <Reveal>
-            <div className="text-xs uppercase tracking-[0.2em] text-teal font-semibold">Leadership</div>
-            <h2 className="mt-3 text-3xl md:text-4xl font-bold text-brand text-balance">Meet the people behind Eladent</h2>
-          </Reveal>
-          <div className="mt-10 grid sm:grid-cols-2 lg:grid-cols-4 gap-5">
-            {leaders.map((p, i) => (
-              <Reveal key={p.name} delay={i * 0.06}>
-                <div className="rounded-2xl bg-white border border-border p-6 text-center h-full">
-                  <div className="mx-auto h-20 w-20 rounded-full bg-gradient-brand text-white grid place-items-center text-2xl font-bold">{p.initials}</div>
-                  <h3 className="mt-4 font-semibold text-brand">{p.name}</h3>
-                  <div className="text-xs text-teal font-medium uppercase tracking-wider">{p.role}</div>
-                  <p className="mt-3 text-sm text-muted-foreground">{p.bio}</p>
-                </div>
-              </Reveal>
-            ))}
-          </div>
-        </div>
-      </section>
-
-      <section className="py-20">
-        <div className="container-prose">
           <div className="rounded-3xl bg-gradient-brand p-10 md:p-14 text-white text-center">
-            <Users className="h-8 w-8 text-teal mx-auto" />
-            <h2 className="mt-4 text-3xl md:text-4xl font-bold">Want to work with a team that cares about your numbers?</h2>
+            <h2 className="text-3xl md:text-4xl font-bold">Let's strengthen your revenue cycle.</h2>
+            <p className="mt-3 text-white/85 max-w-xl mx-auto">
+              Schedule a consultation and discover opportunities to improve collections, reduce aging and increase production.
+            </p>
             <Link to="/contact" className="mt-7 inline-flex items-center gap-2 rounded-full bg-white text-brand px-6 py-3.5 font-semibold">
-              Talk to our team <ArrowRight className="h-4 w-4" />
+              Schedule a Consultation <ArrowRight className="h-4 w-4" />
             </Link>
           </div>
         </div>

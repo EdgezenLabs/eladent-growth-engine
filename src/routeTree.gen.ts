@@ -14,14 +14,10 @@ import { Route as ServicesRouteImport } from './routes/services'
 import { Route as PrivacyPolicyRouteImport } from './routes/privacy-policy'
 import { Route as HipaaComplianceRouteImport } from './routes/hipaa-compliance'
 import { Route as ContactRouteImport } from './routes/contact'
-import { Route as CareersRouteImport } from './routes/careers'
-import { Route as BlogRouteImport } from './routes/blog'
 import { Route as AboutRouteImport } from './routes/about'
 import { Route as IndexRouteImport } from './routes/index'
 import { Route as ServicesIndexRouteImport } from './routes/services.index'
 import { Route as ServicesInsuranceVerificationRouteImport } from './routes/services.insurance-verification'
-import { Route as ServicesDentalBillingRouteImport } from './routes/services.dental-billing'
-import { Route as ServicesCredentialingRouteImport } from './routes/services.credentialing'
 import { Route as ServicesAccountsReceivableRouteImport } from './routes/services.accounts-receivable'
 
 const SitemapDotxmlRoute = SitemapDotxmlRouteImport.update({
@@ -49,16 +45,6 @@ const ContactRoute = ContactRouteImport.update({
   path: '/contact',
   getParentRoute: () => rootRouteImport,
 } as any)
-const CareersRoute = CareersRouteImport.update({
-  id: '/careers',
-  path: '/careers',
-  getParentRoute: () => rootRouteImport,
-} as any)
-const BlogRoute = BlogRouteImport.update({
-  id: '/blog',
-  path: '/blog',
-  getParentRoute: () => rootRouteImport,
-} as any)
 const AboutRoute = AboutRouteImport.update({
   id: '/about',
   path: '/about',
@@ -80,16 +66,6 @@ const ServicesInsuranceVerificationRoute =
     path: '/insurance-verification',
     getParentRoute: () => ServicesRoute,
   } as any)
-const ServicesDentalBillingRoute = ServicesDentalBillingRouteImport.update({
-  id: '/dental-billing',
-  path: '/dental-billing',
-  getParentRoute: () => ServicesRoute,
-} as any)
-const ServicesCredentialingRoute = ServicesCredentialingRouteImport.update({
-  id: '/credentialing',
-  path: '/credentialing',
-  getParentRoute: () => ServicesRoute,
-} as any)
 const ServicesAccountsReceivableRoute =
   ServicesAccountsReceivableRouteImport.update({
     id: '/accounts-receivable',
@@ -100,31 +76,23 @@ const ServicesAccountsReceivableRoute =
 export interface FileRoutesByFullPath {
   '/': typeof IndexRoute
   '/about': typeof AboutRoute
-  '/blog': typeof BlogRoute
-  '/careers': typeof CareersRoute
   '/contact': typeof ContactRoute
   '/hipaa-compliance': typeof HipaaComplianceRoute
   '/privacy-policy': typeof PrivacyPolicyRoute
   '/services': typeof ServicesRouteWithChildren
   '/sitemap.xml': typeof SitemapDotxmlRoute
   '/services/accounts-receivable': typeof ServicesAccountsReceivableRoute
-  '/services/credentialing': typeof ServicesCredentialingRoute
-  '/services/dental-billing': typeof ServicesDentalBillingRoute
   '/services/insurance-verification': typeof ServicesInsuranceVerificationRoute
   '/services/': typeof ServicesIndexRoute
 }
 export interface FileRoutesByTo {
   '/': typeof IndexRoute
   '/about': typeof AboutRoute
-  '/blog': typeof BlogRoute
-  '/careers': typeof CareersRoute
   '/contact': typeof ContactRoute
   '/hipaa-compliance': typeof HipaaComplianceRoute
   '/privacy-policy': typeof PrivacyPolicyRoute
   '/sitemap.xml': typeof SitemapDotxmlRoute
   '/services/accounts-receivable': typeof ServicesAccountsReceivableRoute
-  '/services/credentialing': typeof ServicesCredentialingRoute
-  '/services/dental-billing': typeof ServicesDentalBillingRoute
   '/services/insurance-verification': typeof ServicesInsuranceVerificationRoute
   '/services': typeof ServicesIndexRoute
 }
@@ -132,16 +100,12 @@ export interface FileRoutesById {
   __root__: typeof rootRouteImport
   '/': typeof IndexRoute
   '/about': typeof AboutRoute
-  '/blog': typeof BlogRoute
-  '/careers': typeof CareersRoute
   '/contact': typeof ContactRoute
   '/hipaa-compliance': typeof HipaaComplianceRoute
   '/privacy-policy': typeof PrivacyPolicyRoute
   '/services': typeof ServicesRouteWithChildren
   '/sitemap.xml': typeof SitemapDotxmlRoute
   '/services/accounts-receivable': typeof ServicesAccountsReceivableRoute
-  '/services/credentialing': typeof ServicesCredentialingRoute
-  '/services/dental-billing': typeof ServicesDentalBillingRoute
   '/services/insurance-verification': typeof ServicesInsuranceVerificationRoute
   '/services/': typeof ServicesIndexRoute
 }
@@ -150,47 +114,35 @@ export interface FileRouteTypes {
   fullPaths:
     | '/'
     | '/about'
-    | '/blog'
-    | '/careers'
     | '/contact'
     | '/hipaa-compliance'
     | '/privacy-policy'
     | '/services'
     | '/sitemap.xml'
     | '/services/accounts-receivable'
-    | '/services/credentialing'
-    | '/services/dental-billing'
     | '/services/insurance-verification'
     | '/services/'
   fileRoutesByTo: FileRoutesByTo
   to:
     | '/'
     | '/about'
-    | '/blog'
-    | '/careers'
     | '/contact'
     | '/hipaa-compliance'
     | '/privacy-policy'
     | '/sitemap.xml'
     | '/services/accounts-receivable'
-    | '/services/credentialing'
-    | '/services/dental-billing'
     | '/services/insurance-verification'
     | '/services'
   id:
     | '__root__'
     | '/'
     | '/about'
-    | '/blog'
-    | '/careers'
     | '/contact'
     | '/hipaa-compliance'
     | '/privacy-policy'
     | '/services'
     | '/sitemap.xml'
     | '/services/accounts-receivable'
-    | '/services/credentialing'
-    | '/services/dental-billing'
     | '/services/insurance-verification'
     | '/services/'
   fileRoutesById: FileRoutesById
@@ -198,8 +150,6 @@ export interface FileRouteTypes {
 export interface RootRouteChildren {
   IndexRoute: typeof IndexRoute
   AboutRoute: typeof AboutRoute
-  BlogRoute: typeof BlogRoute
-  CareersRoute: typeof CareersRoute
   ContactRoute: typeof ContactRoute
   HipaaComplianceRoute: typeof HipaaComplianceRoute
   PrivacyPolicyRoute: typeof PrivacyPolicyRoute
@@ -244,20 +194,6 @@ declare module '@tanstack/react-router' {
       preLoaderRoute: typeof ContactRouteImport
       parentRoute: typeof rootRouteImport
     }
-    '/careers': {
-      id: '/careers'
-      path: '/careers'
-      fullPath: '/careers'
-      preLoaderRoute: typeof CareersRouteImport
-      parentRoute: typeof rootRouteImport
-    }
-    '/blog': {
-      id: '/blog'
-      path: '/blog'
-      fullPath: '/blog'
-      preLoaderRoute: typeof BlogRouteImport
-      parentRoute: typeof rootRouteImport
-    }
     '/about': {
       id: '/about'
       path: '/about'
@@ -286,20 +222,6 @@ declare module '@tanstack/react-router' {
       preLoaderRoute: typeof ServicesInsuranceVerificationRouteImport
       parentRoute: typeof ServicesRoute
     }
-    '/services/dental-billing': {
-      id: '/services/dental-billing'
-      path: '/dental-billing'
-      fullPath: '/services/dental-billing'
-      preLoaderRoute: typeof ServicesDentalBillingRouteImport
-      parentRoute: typeof ServicesRoute
-    }
-    '/services/credentialing': {
-      id: '/services/credentialing'
-      path: '/credentialing'
-      fullPath: '/services/credentialing'
-      preLoaderRoute: typeof ServicesCredentialingRouteImport
-      parentRoute: typeof ServicesRoute
-    }
     '/services/accounts-receivable': {
       id: '/services/accounts-receivable'
       path: '/accounts-receivable'
@@ -312,16 +234,12 @@ declare module '@tanstack/react-router' {
 
 interface ServicesRouteChildren {
   ServicesAccountsReceivableRoute: typeof ServicesAccountsReceivableRoute
-  ServicesCredentialingRoute: typeof ServicesCredentialingRoute
-  ServicesDentalBillingRoute: typeof ServicesDentalBillingRoute
   ServicesInsuranceVerificationRoute: typeof ServicesInsuranceVerificationRoute
   ServicesIndexRoute: typeof ServicesIndexRoute
 }
 
 const ServicesRouteChildren: ServicesRouteChildren = {
   ServicesAccountsReceivableRoute: ServicesAccountsReceivableRoute,
-  ServicesCredentialingRoute: ServicesCredentialingRoute,
-  ServicesDentalBillingRoute: ServicesDentalBillingRoute,
   ServicesInsuranceVerificationRoute: ServicesInsuranceVerificationRoute,
   ServicesIndexRoute: ServicesIndexRoute,
 }
@@ -333,8 +251,6 @@ const ServicesRouteWithChildren = ServicesRoute._addFileChildren(
 const rootRouteChildren: RootRouteChildren = {
   IndexRoute: IndexRoute,
   AboutRoute: AboutRoute,
-  BlogRoute: BlogRoute,
-  CareersRoute: CareersRoute,
   ContactRoute: ContactRoute,
   HipaaComplianceRoute: HipaaComplianceRoute,
   PrivacyPolicyRoute: PrivacyPolicyRoute,
@@ -344,13 +260,3 @@ const rootRouteChildren: RootRouteChildren = {
 export const routeTree = rootRouteImport
   ._addFileChildren(rootRouteChildren)
   ._addFileTypes<FileRouteTypes>()
-
-import type { getRouter } from './router.tsx'
-import type { startInstance } from './start.ts'
-declare module '@tanstack/react-start' {
-  interface Register {
-    ssr: true
-    router: Awaited<ReturnType<typeof getRouter>>
-    config: Awaited<ReturnType<typeof startInstance.getOptions>>
-  }
-}
