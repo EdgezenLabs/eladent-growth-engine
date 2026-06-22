@@ -17,7 +17,12 @@ import { Route as ContactRouteImport } from './routes/contact'
 import { Route as AboutRouteImport } from './routes/about'
 import { Route as IndexRouteImport } from './routes/index'
 import { Route as ServicesIndexRouteImport } from './routes/services.index'
+import { Route as ServicesPriorAuthorizationsRouteImport } from './routes/services.prior-authorizations'
+import { Route as ServicesPracticeOperationsRouteImport } from './routes/services.practice-operations'
+import { Route as ServicesPaymentPostingRouteImport } from './routes/services.payment-posting'
 import { Route as ServicesInsuranceVerificationRouteImport } from './routes/services.insurance-verification'
+import { Route as ServicesClaimSubmissionRouteImport } from './routes/services.claim-submission'
+import { Route as ServicesAnalyticsReportingRouteImport } from './routes/services.analytics-reporting'
 import { Route as ServicesAccountsReceivableRouteImport } from './routes/services.accounts-receivable'
 
 const SitemapDotxmlRoute = SitemapDotxmlRouteImport.update({
@@ -60,10 +65,38 @@ const ServicesIndexRoute = ServicesIndexRouteImport.update({
   path: '/',
   getParentRoute: () => ServicesRoute,
 } as any)
+const ServicesPriorAuthorizationsRoute =
+  ServicesPriorAuthorizationsRouteImport.update({
+    id: '/prior-authorizations',
+    path: '/prior-authorizations',
+    getParentRoute: () => ServicesRoute,
+  } as any)
+const ServicesPracticeOperationsRoute =
+  ServicesPracticeOperationsRouteImport.update({
+    id: '/practice-operations',
+    path: '/practice-operations',
+    getParentRoute: () => ServicesRoute,
+  } as any)
+const ServicesPaymentPostingRoute = ServicesPaymentPostingRouteImport.update({
+  id: '/payment-posting',
+  path: '/payment-posting',
+  getParentRoute: () => ServicesRoute,
+} as any)
 const ServicesInsuranceVerificationRoute =
   ServicesInsuranceVerificationRouteImport.update({
     id: '/insurance-verification',
     path: '/insurance-verification',
+    getParentRoute: () => ServicesRoute,
+  } as any)
+const ServicesClaimSubmissionRoute = ServicesClaimSubmissionRouteImport.update({
+  id: '/claim-submission',
+  path: '/claim-submission',
+  getParentRoute: () => ServicesRoute,
+} as any)
+const ServicesAnalyticsReportingRoute =
+  ServicesAnalyticsReportingRouteImport.update({
+    id: '/analytics-reporting',
+    path: '/analytics-reporting',
     getParentRoute: () => ServicesRoute,
   } as any)
 const ServicesAccountsReceivableRoute =
@@ -82,7 +115,12 @@ export interface FileRoutesByFullPath {
   '/services': typeof ServicesRouteWithChildren
   '/sitemap.xml': typeof SitemapDotxmlRoute
   '/services/accounts-receivable': typeof ServicesAccountsReceivableRoute
+  '/services/analytics-reporting': typeof ServicesAnalyticsReportingRoute
+  '/services/claim-submission': typeof ServicesClaimSubmissionRoute
   '/services/insurance-verification': typeof ServicesInsuranceVerificationRoute
+  '/services/payment-posting': typeof ServicesPaymentPostingRoute
+  '/services/practice-operations': typeof ServicesPracticeOperationsRoute
+  '/services/prior-authorizations': typeof ServicesPriorAuthorizationsRoute
   '/services/': typeof ServicesIndexRoute
 }
 export interface FileRoutesByTo {
@@ -93,7 +131,12 @@ export interface FileRoutesByTo {
   '/privacy-policy': typeof PrivacyPolicyRoute
   '/sitemap.xml': typeof SitemapDotxmlRoute
   '/services/accounts-receivable': typeof ServicesAccountsReceivableRoute
+  '/services/analytics-reporting': typeof ServicesAnalyticsReportingRoute
+  '/services/claim-submission': typeof ServicesClaimSubmissionRoute
   '/services/insurance-verification': typeof ServicesInsuranceVerificationRoute
+  '/services/payment-posting': typeof ServicesPaymentPostingRoute
+  '/services/practice-operations': typeof ServicesPracticeOperationsRoute
+  '/services/prior-authorizations': typeof ServicesPriorAuthorizationsRoute
   '/services': typeof ServicesIndexRoute
 }
 export interface FileRoutesById {
@@ -106,7 +149,12 @@ export interface FileRoutesById {
   '/services': typeof ServicesRouteWithChildren
   '/sitemap.xml': typeof SitemapDotxmlRoute
   '/services/accounts-receivable': typeof ServicesAccountsReceivableRoute
+  '/services/analytics-reporting': typeof ServicesAnalyticsReportingRoute
+  '/services/claim-submission': typeof ServicesClaimSubmissionRoute
   '/services/insurance-verification': typeof ServicesInsuranceVerificationRoute
+  '/services/payment-posting': typeof ServicesPaymentPostingRoute
+  '/services/practice-operations': typeof ServicesPracticeOperationsRoute
+  '/services/prior-authorizations': typeof ServicesPriorAuthorizationsRoute
   '/services/': typeof ServicesIndexRoute
 }
 export interface FileRouteTypes {
@@ -120,7 +168,12 @@ export interface FileRouteTypes {
     | '/services'
     | '/sitemap.xml'
     | '/services/accounts-receivable'
+    | '/services/analytics-reporting'
+    | '/services/claim-submission'
     | '/services/insurance-verification'
+    | '/services/payment-posting'
+    | '/services/practice-operations'
+    | '/services/prior-authorizations'
     | '/services/'
   fileRoutesByTo: FileRoutesByTo
   to:
@@ -131,7 +184,12 @@ export interface FileRouteTypes {
     | '/privacy-policy'
     | '/sitemap.xml'
     | '/services/accounts-receivable'
+    | '/services/analytics-reporting'
+    | '/services/claim-submission'
     | '/services/insurance-verification'
+    | '/services/payment-posting'
+    | '/services/practice-operations'
+    | '/services/prior-authorizations'
     | '/services'
   id:
     | '__root__'
@@ -143,7 +201,12 @@ export interface FileRouteTypes {
     | '/services'
     | '/sitemap.xml'
     | '/services/accounts-receivable'
+    | '/services/analytics-reporting'
+    | '/services/claim-submission'
     | '/services/insurance-verification'
+    | '/services/payment-posting'
+    | '/services/practice-operations'
+    | '/services/prior-authorizations'
     | '/services/'
   fileRoutesById: FileRoutesById
 }
@@ -215,11 +278,46 @@ declare module '@tanstack/react-router' {
       preLoaderRoute: typeof ServicesIndexRouteImport
       parentRoute: typeof ServicesRoute
     }
+    '/services/prior-authorizations': {
+      id: '/services/prior-authorizations'
+      path: '/prior-authorizations'
+      fullPath: '/services/prior-authorizations'
+      preLoaderRoute: typeof ServicesPriorAuthorizationsRouteImport
+      parentRoute: typeof ServicesRoute
+    }
+    '/services/practice-operations': {
+      id: '/services/practice-operations'
+      path: '/practice-operations'
+      fullPath: '/services/practice-operations'
+      preLoaderRoute: typeof ServicesPracticeOperationsRouteImport
+      parentRoute: typeof ServicesRoute
+    }
+    '/services/payment-posting': {
+      id: '/services/payment-posting'
+      path: '/payment-posting'
+      fullPath: '/services/payment-posting'
+      preLoaderRoute: typeof ServicesPaymentPostingRouteImport
+      parentRoute: typeof ServicesRoute
+    }
     '/services/insurance-verification': {
       id: '/services/insurance-verification'
       path: '/insurance-verification'
       fullPath: '/services/insurance-verification'
       preLoaderRoute: typeof ServicesInsuranceVerificationRouteImport
+      parentRoute: typeof ServicesRoute
+    }
+    '/services/claim-submission': {
+      id: '/services/claim-submission'
+      path: '/claim-submission'
+      fullPath: '/services/claim-submission'
+      preLoaderRoute: typeof ServicesClaimSubmissionRouteImport
+      parentRoute: typeof ServicesRoute
+    }
+    '/services/analytics-reporting': {
+      id: '/services/analytics-reporting'
+      path: '/analytics-reporting'
+      fullPath: '/services/analytics-reporting'
+      preLoaderRoute: typeof ServicesAnalyticsReportingRouteImport
       parentRoute: typeof ServicesRoute
     }
     '/services/accounts-receivable': {
@@ -234,13 +332,23 @@ declare module '@tanstack/react-router' {
 
 interface ServicesRouteChildren {
   ServicesAccountsReceivableRoute: typeof ServicesAccountsReceivableRoute
+  ServicesAnalyticsReportingRoute: typeof ServicesAnalyticsReportingRoute
+  ServicesClaimSubmissionRoute: typeof ServicesClaimSubmissionRoute
   ServicesInsuranceVerificationRoute: typeof ServicesInsuranceVerificationRoute
+  ServicesPaymentPostingRoute: typeof ServicesPaymentPostingRoute
+  ServicesPracticeOperationsRoute: typeof ServicesPracticeOperationsRoute
+  ServicesPriorAuthorizationsRoute: typeof ServicesPriorAuthorizationsRoute
   ServicesIndexRoute: typeof ServicesIndexRoute
 }
 
 const ServicesRouteChildren: ServicesRouteChildren = {
   ServicesAccountsReceivableRoute: ServicesAccountsReceivableRoute,
+  ServicesAnalyticsReportingRoute: ServicesAnalyticsReportingRoute,
+  ServicesClaimSubmissionRoute: ServicesClaimSubmissionRoute,
   ServicesInsuranceVerificationRoute: ServicesInsuranceVerificationRoute,
+  ServicesPaymentPostingRoute: ServicesPaymentPostingRoute,
+  ServicesPracticeOperationsRoute: ServicesPracticeOperationsRoute,
+  ServicesPriorAuthorizationsRoute: ServicesPriorAuthorizationsRoute,
   ServicesIndexRoute: ServicesIndexRoute,
 }
 
